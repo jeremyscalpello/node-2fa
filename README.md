@@ -45,7 +45,7 @@ API
 
 ### generateSecret(options)
 
-returns an object containing a 32-character secret (keep user specific, store in DB), a uri (if you want to make your own QR / barcode) and a d2irect link to a QR code served via HTTPS by the Google Chart API
+returns an object containing a 32-character secret (keep user specific, store in DB), a uri (if you want to make your own QR / barcode) and a direct link to a QR code served via HTTPS by the Google Chart API
 
 options is an object containing `name` which is the name of your app that will show up when the user scans the QR code and `account` which can be the username and will also show up in the user's app. Both parameters are optional
 
