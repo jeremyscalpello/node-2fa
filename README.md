@@ -60,9 +60,9 @@ checks if a time-based token matches a token from secret key within a +/- 2 minu
 returns either `null` if the token does not match, or an object containing delta key, which is an integer of how for behind / forward the code time sync is in terms of how many new codes have been generated since entry
 
 ex.
-`{delta: -1}` means that the client entered the key too late (a newer key was meant to be used)
-`{delta: 1}` means the client entered the key too early (an older key was meant to be used)
-`{delta: 0}` means the client was within the time frame of the current key
+`{delta: -1}` means that the client entered the key too late (a newer key was meant to be used).
+`{delta: 1}` means the client entered the key too early (an older key was meant to be used).
+`{delta: 0}` means the client was within the time frame of the current key.
 
 2-Minute Window
 ----------------
