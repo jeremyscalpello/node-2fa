@@ -31,7 +31,7 @@ var newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'john
 */
 
 var newToken = twoFactor.generateToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W');
-// '765075'
+// { token: '630618' }
 
 twoFactor.verifyToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W', '765075');
 // { delta: 0 }
@@ -43,13 +43,15 @@ twoFactor.verifyToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W', '00');
 API
 ---
 
-### generateSecret()
+### generateSecret(options)
 
-generates a 32-character secret (keep user specific, store in DB), a uri (if you want to make your own QR / barcode) and a d2irect link to a QR code served via HTTPS by the Google Chart API
+returns an object containing a 32-character secret (keep user specific, store in DB), a uri (if you want to make your own QR / barcode) and a d2irect link to a QR code served via HTTPS by the Google Chart API
+
+options is an object containing `name` which is the name of your app that will show up when the user scans the QR code and `account` which can be the username and will also show up in the user's app. Both parameters are optional
 
 ### generateToken(secret)
 
-generates a 6-digit token 
+returns an object containing a 6-character token
 
 ### verifyToken(secret, token)
 
@@ -57,7 +59,10 @@ checks if a time-based token matches a token from secret key within a +/- 2 minu
 
 returns either `null` if the token does not match, or an object containing delta key, which is an integer of how for behind / forward the code time sync is in terms of how many new codes have been generated since entry
 
-ex `{delta: -1}` means that the client entered the key too late (a newer key was meant to be used), `{delta: 1}` means the client entered the key too early (an older key was meant to be used) and `{delta: 0}` means the client was within the time frame of the current key.
+ex.
+`{delta: -1}` means that the client entered the key too late (a newer key was meant to be used)
+`{delta: 1}` means the client entered the key too early (an older key was meant to be used)
+`{delta: 0}` means the client was within the time frame of the current key
 
 2-Minute Window
 ----------------

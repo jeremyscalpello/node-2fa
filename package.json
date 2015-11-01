@@ -1,0 +1,30 @@
+{
+  "name": "node-2fa",
+  "version": "1.0.0",
+  "description": "Easy 2-Factor Integration For Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "node example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremyscalpello/node-2fa"
+  },
+  "keywords": [
+    "auth",
+    "2fa",
+    "mfa",
+    "token",
+    "key",
+    "base32",
+    "code",
+    "generator"
+  ],
+  "author": "Jeremy Scalpello <jeremy@scalpello.info>",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/jeremyscalpello/node-2fa#readme",
+  "dependencies": {
+    "notp": "^2.0.3",
+    "thirty-two": "0.0.2"
+  }
+}
