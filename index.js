@@ -30,7 +30,7 @@ function verifyToken(secret, token) {
     var bin = b32.decode(unformatted);
     token = token.replace(/\W+/g, '');
     return notp.totp.verify(token, bin, {
-        window: 2,
+        window: 4,
         time: 30
     });
 };
