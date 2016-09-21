@@ -24,13 +24,14 @@ function generateToken(secret) {
     };
 };
 
-function verifyToken(secret, token) {
+function verifyToken(secret, token, window) {
     if (!secret || !secret.length || !token || !token.length) return null;
+    if (!window) window = 4;
     var unformatted = secret.replace(/\W+/g, '').toUpperCase();
     var bin = b32.decode(unformatted);
     token = token.replace(/\W+/g, '');
     return notp.totp.verify(token, bin, {
-        window: 4,
+        window: window,
         time: 30
     });
 };
