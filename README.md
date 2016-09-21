@@ -53,9 +53,9 @@ options is an object containing `name` which is the name of your app that will s
 
 returns an object containing a 6-character token
 
-### verifyToken(secret, token)
+### verifyToken(secret, token, window)
 
-checks if a time-based token matches a token from secret key within a +/- 2 minute window
+checks if a time-based token matches a token from secret key within a +/- _window_ (default: 4) minute window
 
 returns either `null` if the token does not match, or an object containing delta key, which is an integer of how for behind / forward the code time sync is in terms of how many new codes have been generated since entry
 
@@ -64,7 +64,7 @@ ex.
 `{delta: 1}` means the client entered the key too early (an older key was meant to be used).
 `{delta: 0}` means the client was within the time frame of the current key.
 
-2-Minute Window
+_n_-Minute Window
 ----------------
 
-The window is set to 2, meaning each token is valid for a total of 2 minutes to account for time drift
+The window is set to 4 by default. Each token is valid for a total of _n_ minutes to account for time drift.
