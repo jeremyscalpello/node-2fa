@@ -43,8 +43,8 @@ export function generateSecret({ name, account }: IGenerateSecretOptions) {
   } as IGenerateSecretResult;
 }
 
-export function generateToken(secret: string = "") {
-  if (secret === "") return null;
+export function generateToken(secret: string) {
+  if (!secret || secret === "") return null;
   let unformatted = secret.replace(/\W+/g, "").toUpperCase();
   let bin = b32.decode(unformatted);
   return { token: notp.totp.gen(bin) as string };
