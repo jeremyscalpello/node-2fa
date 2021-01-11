@@ -1,13 +1,13 @@
-var twoFactor = require('./index.js');
+const twoFactor = require('./src');
 
 console.log("*******************************");
 console.log("Generating New Secret");
-var newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'johndoe'});
+const newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'johndoe'});
 console.log(newSecret);
 
 console.log("*******************************");
 console.log("Generating New Token With Secret " + newSecret.secret);
-var newToken = twoFactor.generateToken(newSecret.secret);
+const newToken = twoFactor.generateToken(newSecret.secret);
 console.log(newToken);
 
 console.log("*******************************");
