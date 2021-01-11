@@ -1,12 +1,13 @@
 {
   "name": "node-2fa",
   "version": "2.0.0",
-  "description": "Easy 2-Factor Integration For Node.JS",
+  "description": "Easy 2-Factor Integration For Node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "private": false,
   "scripts": {
     "test": "eslint . --fix&&jest",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run test&&npm run build",
     "build": "tsc"
   },
   "files": [
@@ -28,12 +29,15 @@
     "code",
     "generator"
   ],
-  "author": "Jeremy Scalpello <jeremy@scalpello.info>",
+  "contributors": [
+    "Jeremy Scalpello <jeremy@scalpello.info>",
+    "Alistair Smith <hey@alistair.cloud>"
+  ],
   "license": "Apache-2.0",
   "homepage": "https://github.com/jeremyscalpello/node-2fa#readme",
   "dependencies": {
     "notp": "^2.0.3",
-    "thirty-two": "0.0.2"
+    "thirty-two": "1.0.2"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
