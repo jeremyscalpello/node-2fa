@@ -3,6 +3,7 @@
   "version": "1.1.2",
   "description": "Easy 2-Factor Integration For Node.JS",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "node example.js"
   },
