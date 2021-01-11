@@ -1,8 +1,9 @@
-const twoFactor = require('./src');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const twoFactor = require("./dist");
 
 console.log("*******************************");
 console.log("Generating New Secret");
-const newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'johndoe'});
+const newSecret = twoFactor.generateSecret({ name: "My Awesome App", account: "johndoe" });
 console.log(newSecret);
 
 console.log("*******************************");
@@ -24,7 +25,7 @@ console.log(twoFactor.verifyToken(newSecret.secret, newToken.token, -3));
 
 console.log("*******************************");
 console.log("Verifying Invalid Token");
-console.log(twoFactor.verifyToken(newSecret.secret, '11111'));
+console.log(twoFactor.verifyToken(newSecret.secret, "11111"));
 
 console.log("*******************************");
 console.log("Done - Star Me On Github");
