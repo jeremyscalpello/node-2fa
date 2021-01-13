@@ -1,15 +1,16 @@
 # node-2fa
-Easy 2-Factor Integration For Node.JS
+
+Easy 2-Factor Integration For Node.js
 
 There are a number of applications which support 2-Factor Authentication, namely
 
-* Authy [iPhone](https://itunes.apple.com/us/app/authy/id494168017?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.authy.authy&hl=en) | [Chrome](https://chrome.google.com/webstore/detail/authy/gaedmjdfmmahhbjefcbgaolhhanlaolb?hl=en) | [Linux](https://www.authy.com/personal/) | [OS X](https://www.authy.com/personal/) | [BlackBerry](https://appworld.blackberry.com/webstore/content/38831914/?countrycode=US&lang=en)
-* Google Authenticator [iPhone](https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en)
-* Microsoft Authenticator [Windows Phone](https://www.microsoft.com/en-us/store/apps/authenticator/9wzdncrfj3rj) | [Android](https://play.google.com/store/apps/details?id=com.microsoft.msa.authenticator)
+- Authy [iPhone](https://itunes.apple.com/us/app/authy/id494168017?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.authy.authy&hl=en) | [Chrome](https://chrome.google.com/webstore/detail/authy/gaedmjdfmmahhbjefcbgaolhhanlaolb?hl=en) | [Linux](https://www.authy.com/personal/) | [OS X](https://www.authy.com/personal/) | [BlackBerry](https://appworld.blackberry.com/webstore/content/38831914/?countrycode=US&lang=en)
+- Google Authenticator [iPhone](https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en)
+- Microsoft Authenticator [Windows Phone](https://www.microsoft.com/en-us/store/apps/authenticator/9wzdncrfj3rj) | [Android](https://play.google.com/store/apps/details?id=com.microsoft.msa.authenticator)
 
 This module uses [`notp`](https://github.com/guyht/notp) which implements `TOTP` [(RFC 6238)](https://www.ietf.org/rfc/rfc6238.txt)
-(the *Authenticator* standard), which is based on `HOTP` [(RFC 4226)](https://www.ietf.org/rfc/rfc4226.txt)
-to provide codes that are exactly compatible with all other *Authenticator* apps and services that use them.
+(the _Authenticator_ standard), which is based on `HOTP` [(RFC 4226)](https://www.ietf.org/rfc/rfc4226.txt)
+to provide codes that are exactly compatible with all other _Authenticator_ apps and services that use them.
 
 Usage
 =====
@@ -19,10 +20,9 @@ npm install node-2fa --save
 ```
 
 ```javascript
+const twofactor = require("node-2fa");
 
-var twoFactor = require('node-2fa');
-
-var newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'johndoe'});
+const newSecret = twofactor.generateSecret({ name: "My Awesome App", account: "johndoe" });
 /*
 { secret: 'XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W',
   uri: 'otpauth://totp/My Awesome App:johndoe%3Fsecret=XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W',
@@ -30,18 +30,17 @@ var newSecret = twoFactor.generateSecret({name: 'My Awesome App', account: 'john
 }
 */
 
-var newToken = twoFactor.generateToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W');
-// { token: '630618' }
+const newToken = twofactor.generateToken("XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W");
+// => { token: '630618' }
 
-twoFactor.verifyToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W', '765075');
-// { delta: 0 }
+twofactor.verifyToken("XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W", "630618");
+// => { delta: 0 }
 
-twoFactor.verifyToken('XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W', '00');
-// null
+twofactor.verifyToken("XDQXYCP5AC6FA32FQXDGJSPBIDYNKK5W", "00");
+// => null
 ```
 
-API
----
+## API
 
 ### generateSecret(options)
 
@@ -64,7 +63,6 @@ ex.
 `{delta: 1}` means the client entered the key too early (an older key was meant to be used).
 `{delta: 0}` means the client was within the time frame of the current key.
 
-_n_-Minute Window
-----------------
+## _n_-Minute Window
 
 The window is set to 4 by default. Each token is valid for a total of _n_ minutes to account for time drift.
