@@ -20,9 +20,15 @@ export function generateSecret(options?: Options) {
     .join("")
     .toUpperCase();
 
-  const uri = `otpauth://totp/${config.name}${config.account}%3Fsecret=${secret}`;
+  const query = `?secret=${secret}&issuer=${config.name}`
+  const encodedQuery = query.replace('?', '%3F').replace('&', '%26')
+  const uri = `otpauth://totp/${config.name}${config.account}`
 
-  return { secret, uri, qr: "https://chart.googleapis.com/chart?chs=166x166&chld=L|0&cht=qr&chl=" + uri };
+  return {
+    secret,
+    uri: `${uri}${query}`,
+    qr: `https://chart.googleapis.com/chart?chs=166x166&chld=L|0&cht=qr&chl=${uri}${encodedQuery}`
+  };
 }
 
 export function generateToken(secret: string) {
