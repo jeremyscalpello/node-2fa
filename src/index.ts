@@ -1,4 +1,4 @@
-import notp from "notp";
+import * as notp from "notp";
 import crypto from "crypto";
 import b32 from "thirty-two";
 import { Options } from "./interfaces";
